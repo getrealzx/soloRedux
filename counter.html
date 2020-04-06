@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    <script>
+        //counter
+        //initial counter:0
+        //Add - action creator :increament counter inside state by 1,2,3
+        //substract -action creator: decrement counter inside state by 3,2,1,0
+
+        function Add() {
+            return {
+                type: "ADD"
+            }
+        }
+
+
+        function Minus() {
+            return {
+                type: "MINUS"
+            }
+        }
+
+        let initialState = {
+            count: 5
+        }
+
+        function reducer(state, action) {
+            if (state === undefined) {
+                state = initialState
+            }
+
+            if (action.type === "ADD") {
+
+                return {
+                    // ...state,
+                    count: state.count + 1
+                }
+            }
+            if (action.type === "MINUS") {
+
+                return {
+                    // ...state,
+                    count: state.count -1
+                }
+            }
+        }
+
+        let store = Redux.createStore(reducer);
+        store.subscribe(showState);
+
+        function showState() {
+            console.log(store.getState())
+        }
+
+        store.dispatch(Add());
+        store.dispatch(Add());
+        store.dispatch(Add());
+        store.dispatch(Add());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+
+
+    </script>
+</body>
+
+</html>
